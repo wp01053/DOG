@@ -33,10 +33,12 @@
     <div class="box">
       <h1 class="title">보고싶은 개 정보를 누르세요.</h1>
       <span v-for="dog in dogs" v-bind:key="dog">
-      <a href="#" class="button is-success">
+      <nuxt-link :to="'/dogs/'+ dog" class="button is-success">
         {{dog}}
-      </a>&nbsp;
-    </span>
+     
+    </nuxt-link> &nbsp;
+    
+  </span>
     </div>
   </section>
 </template>
