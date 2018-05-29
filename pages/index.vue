@@ -9,7 +9,7 @@
       </div>
     </div>
     <br>
-    <div class="columns">
+    <article class="columns">
       <div class="column">
         <div class="notification is-info">
           <figure class="image is-squre">
@@ -29,17 +29,17 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="box">
+    </article>
+    <article class="box">
       <h1 class="title">보고싶은 개 정보를 누르세요.</h1>
-      <span v-for="dog in dogs" v-bind:key="dog">
+      <span v-for="dog in dogs" :key="dog">
       <nuxt-link :to="'/dogs/'+ dog" class="button is-success">
         {{dog}}
      
     </nuxt-link> &nbsp;
-    
+
   </span>
-    </div>
+    </article>
   </section>
 </template>
 

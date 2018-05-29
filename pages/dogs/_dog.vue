@@ -1,26 +1,39 @@
 <template>
-<section class="section">
-    <article class="hero is-info">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">저는 {{dogName.toUpperCase()}}입니다.</h1>
-                <h2 class="subtitle">많이 사랑해 주세욤!</h2>
+    <section class="section">
+        <article class="hero is-info">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">저는 {{dogName.toUpperCase()}}입니다.</h1>
+                    <h2 class="subtitle">많이 사랑해주세용!</h2>
+                </div>
             </div>
-        </div>
-    </article>
-</section>
+        </article>
+        <article class="notification is-success">
+            <div class="columns">
+                <div v-for="image in images" :key="image" class="column">
+                    <figure class="image is-square">
+                        <img :src="image" alt="">
+                    </figure>
+                </div>
+
+            </div>
+        </article>
+    </section>
 </template>
 <script>
-    export default{       
-            asyncData({params}){
-                return{
-                    dogName: params.dog
-
-                };
+    import axios from 'axios';
+    export default {
+        async asyncData({ params }) {
+            let maxImg = 4;
+            let images = [];
+            for (let i = 0; i < maxImg; i++) {
+                const image = await axios.get(`https://dog.ceo/api/breed/${params.dog}/images/random`);
+                images.push(image.data.message);
             }
-
-        
+            return {
+                dogName: params.dog,
+                images: images
+            };
+        }
     };
-
-
 </script>
